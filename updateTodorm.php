@@ -1,0 +1,90 @@
+<?php    
+    include 'config.inc';
+    $sql = "select distinct * from student,dormitory
+                    WHERE student.DormName=dormitory.DormName;";
+    $result = $conn->query($sql);
+    $row = mysqli_fetch_assoc($result);
+?>
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>แก้ไขข้อมูลนิสิต DatabaseGroup</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+        <?php
+        if(!isset($_POST['send'])){
+        ?>    
+        <form method = "post" action = "<?php echo $_SERVER['PHP_SELF']; ?>">
+            <h1> จงกรอกข้อมูลนิสิตที่ต้องการแก้ไข </h1>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">รหัสนิสิต : </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" placeholder="รหัสนิสิต" type="text" name="sid" value ="<?php echo $row['Sid']?>"><p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> ชื่อหอพัก : </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" placeholder="ชื่อหอพัก" type="text" name="dormName" value ="<?php echo $row['DormName']?>"><p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">ห้อง : </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" placeholder="ห้อง" type="text" name="room" value ="<?php echo $row['RoomNo']?>"><p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">เตียง : </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" placeholder="เตียง" type="text" name="bed" value ="<?php echo $row['BedNo']?>"><p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">วันที่เข้าหอ : </label>
+                    <div class="col-sm-10">
+                    <input class="form-control" placeholder="วันที่เข้าหอ" type="date" name="accessdate" value ="<?php echo $row['AccessDate']?>"><p>
+                    </div>
+                </div>
+            <input type ="submit" style="width:100px" class="btn btn-success" name ="send" value="ตกลง">    
+            <input type ="reset" style="width:100px" class="btn btn-danger" name ="cancel" value="ยกเลิก">  
+        </form>
+              
+        <?php
+        }
+        else{
+            include 'config.inc';
+            $sid = $_POST['sid'];
+            $dormName = $_POST['dormName'];
+            $room = $_POST['room'];
+            $bed = $_POST['bed'];
+            $accessdate = $_POST["accessdate"];
+            
+            $sql = "UPDATE student SET DormName='$dormName',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate' WHERE Sid='$sid'";
+            $result = $conn->query($sql);
+            if ($result) {
+                echo "แก้ไขข้อมูลเรียบร้อยแล้ว";
+            } else {
+                echo "ไม่สามารถแก้ไขข้อมูลได้";
+            }
+            $conn->close();
+        // put your code here
+        }
+        ?>
+        <br>
+        <input type ="submit" style="width:200px" class="btn btn-primary" onclick = "location.href='manageDorm.php'" value="ย้อนกลับ"> 
+        </div>
+    </body>
+</html>
