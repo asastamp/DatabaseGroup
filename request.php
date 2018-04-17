@@ -15,14 +15,17 @@ and open the template in the editor.
     <body>
         <div class="container">
         <?php
+        session_start();
         if(!isset($_POST['send'])){
         ?>    
         <form  method = "post" action = "<?php echo $_SERVER['PHP_SELF']; ?>">
-            <h1> แบบฟอร์มการร้องขอ </h1>
+            <div class="jumbotron">
+                <h1><center> แบบฟอร์มการร้องขอ </center></h1>
+            </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">รหัสนิสิต :</label> 
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="รหัสนิสิต" name="sid">
+                    <?php echo $_SESSION['Username'];?>
                 </div>
             </div>
             <div class="form-group row">
@@ -39,9 +42,9 @@ and open the template in the editor.
         }
         else{
             include 'config.inc';
-            $sid = $_POST['sid'];
+            $sid = $_SESSION['Username'];
             $dormname = $_POST['dormname'];
-            
+
             $sql = "Insert Into request values('$sid','$dormname');";
             $result = $conn->query($sql);
             if ($result) {
@@ -55,7 +58,7 @@ and open the template in the editor.
         ?>
         <p>
         <br>
-        <input type="submit" class="btn btn-primary" style="width:200px" onclick = "location.href='index.php'" value="กลับหน้าหลัก"> 
+        <input type="submit" class="btn btn-primary" style="width:200px" onclick = "location.href='student.php'" value="กลับหน้าหลัก"> 
         </div>
     </body>
 </html>

@@ -18,10 +18,10 @@ and open the template in the editor.
             <div class="jumbotron">
                 <h1><center>ระบบหอพัก DatabaseGroup</center></h1>
             </div>
-        <input type="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='request.php'" value="ร้องขอหอพัก">
         <input type="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='managedorm.php'" value="จัดการข้อมูลหอของนิสิต">
         <input type="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='score.php'" value="เพิ่มลดคะแนนหอ">
         <input type="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='inforequest.php'" value="ข้อมูลการร้องขอหอพัก">
+        <input type="submit" class="btn btn-danger btn-lg btn-block" onclick = "location.href='login.php'" value="ออกจากระบบ">
         </div>
     </body>
 </html>
