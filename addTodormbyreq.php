@@ -40,12 +40,12 @@ and open the template in the editor.
                                             <h1>ที่ต้องการเพิ่ม</h1>
 					</span>
 					<div class="wrap-input3 validate-input" data-validate="Name is required">
-						<input class="input3" type="text" name="sid" placeholder="รหัสนิสิต :">
+						<input class="input3" type="text" name="sid" placeholder="รหัสนิสิต :" value ="<?php echo $_GET['id']?>">
 						<span class="focus-input3"></span>
 					</div>
 
 					<div class="wrap-input3 validate-input" data-validate = "Dormname is required">
-						<input class="input3" type="text" name="dormname" placeholder="ชื่อหอพัก :">
+						<input class="input3" type="text" name="dormname" placeholder="ชื่อหอพัก :" value ="<?php echo $_GET['id2']?>">
 						<span class="focus-input3"></span>
 					</div>
 
@@ -65,7 +65,7 @@ and open the template in the editor.
 					</div>
 	
                                         <div class="container-contact3-form-btn"><center>
-                                                <button class="contact3-form-btn" type ="submit" name ="send">
+                                                <button class="contact3-form-btn" type ="submit" name ="send" >
 							ตกลง
 						</button>
                                                 <button class="contact3-form-btn" type ="reset" name ="cancel">
@@ -76,7 +76,7 @@ and open the template in the editor.
 				</form>
 			</div>
 		</div>
-            <center><button class="contact3-form-btn" type ="submit" value="ย้อนกลับ" onclick = "location.href='manageDorm.php'">
+            <center><button class="contact3-form-btn" type ="submit" value="ย้อนกลับ">
 		กลับหน้าหลัก
 	</button></center>
 	</div>
@@ -91,24 +91,23 @@ and open the template in the editor.
             $room = $_POST['room'];
             $bed = $_POST['bed'];
             $accessdate = $_POST["accessdate"];
-            
             $sql = "UPDATE student SET DormName='$dormname',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate',DScore=0 "
                     . "WHERE Sid='$sid'";
             
             $result = $conn->query($sql);
             if ($result) {
                 echo "เพิ่มข้อมูลเรียบร้อยแล้ว";
+                echo "<br>";
+                echo "<a href='deleteToReq.php?id=$sid'> กลับหน้าหลัก</a>"
+               
                 ?>
-            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='manageDorm.php'">
-                    กลับหน้าหลัก
-        </button></center>
                 <?php
                 
                 
             } else {
                 echo "ไม่สามารถเพิ่มข้อมูลได้";
                 ?>
-            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='manageDorm.php'">
+            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='index.php'">
                     กลับหน้าหลัก
         </button></center>       
                 <?php

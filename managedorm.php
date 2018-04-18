@@ -12,6 +12,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="container">
@@ -21,6 +23,8 @@ and open the template in the editor.
                     WHERE student.DormName=dormitory.DormName;";
             $result = $conn->query($sql);
         ?>
+            <div class="table-users">
+            <div class="header">ข้อมูลหอพักของนิสิต</div>
             <table class="table table-bordered" border='1'><tr align='center'>
         <?php    
             echo "
@@ -65,9 +69,10 @@ and open the template in the editor.
             
                 $conn->close();   
         ?></table>
+            </div>
         <br>
-        <input type="submit" class="btn btn-info " style="width:200px" value="เพิ่มข้อมูลนิสิต" onclick = "location.href='addTodorm.php'" /><br><br>
-        <input type="submit" class="btn btn-primary" style="width:200px" value="กลับหน้าหลัก" onclick = "location.href='index.php'" />
+        <center><input type="submit" class="btn btn-danger " style="width:200px" value="เพิ่มข้อมูลนิสิต" onclick = "location.href='addTodorm.php'" /></center><br>
+        <center><input type="submit" class="btn btn-primary" style="width:200px" value="กลับหน้าหลัก" onclick = "location.href='index.php'" /></center>
         </div>
     </body>
 </html>

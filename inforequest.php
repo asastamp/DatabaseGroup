@@ -24,15 +24,16 @@ and open the template in the editor.
             echo "
             <td><b>รหัสนิสิต</b></td>
             <td><b>ชื่อหอพักที่ร้องขอ</b></td>
+            <td><b>เพิ่มเข้าหอ</b></td>
             </tr>";
             
             while($row = mysqli_fetch_array($result)){
                 $studentid = $row["Sid"];
                 $dormName = $row["dormname"];
-                
                 echo "<tr>".
                         "<td><center>$studentid</center></td>"
                         . "<td><center>$dormName</center></td>"
+                        ."<td><center><a href='addTodormbyreq.php?id=$row[0]&id2=$row[1]'> เพิ่ม</a></center></td>"
                         ."</tr>";
                            
             }

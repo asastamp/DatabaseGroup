@@ -11,12 +11,11 @@ and open the template in the editor.
         <title>ข้อมูลหอพักสำหรับนักเรียน DatabaseGroup</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">            
-                <h1><center>ข้อมูลหอพักของคุณ</center></h1>
-            </div>
         <?php
             session_start();
             if($_SESSION['UserID'] == ""){
@@ -31,6 +30,8 @@ and open the template in the editor.
             $sql = "select * from student where Sid = '".$_SESSION['Username']."'";
             $result = $conn->query($sql);
         ?>
+        <div class="table-users">
+             <div class="header">ข้อมูลหอพักของคุณ</div>
         <table class="table table-bordered" border='1'><tr align='center'>
         <?php    
             echo "
@@ -71,6 +72,7 @@ and open the template in the editor.
             
                 $conn->close();   
         ?></table>
+         </div>
         <input type="submit" class="btn btn-success btn-lg btn-block" value="ส่งคำขอหอพัก" onclick = "location.href='request.php'" />  
         <input type="submit" class="btn btn-primary btn-lg btn-block" value="ออกจากระบบ" onclick = "location.href='login.php'" />
         </div>
