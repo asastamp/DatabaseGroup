@@ -1,7 +1,7 @@
 <?php    
     include 'config.inc';
-    $sql = "select distinct * from student,dormitory
-                    WHERE student.DormName=dormitory.DormName;";
+    $sql = "select distinct * from student,manage_dorm
+                    WHERE student.Sid=manage_dorm.Sid;";
     $result = $conn->query($sql);
     $row = mysqli_fetch_assoc($result);
 ?>
@@ -19,49 +19,75 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>แก้ไขข้อมูลนิสิต DatabaseGroup</title>
         
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+           <!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="s_form/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="s_form/css/util.css">
+	<link rel="stylesheet" type="text/css" href="s_form/css/main.css">
+    <!--===============================================================================================-->
     </head>
     <body>
-        <div class="container">
         <?php
         if(!isset($_POST['send'])){
         ?>    
+        <div class="bg-contact3" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-contact3">
+			<div class="wrap-contact3">
         <form method = "post" action = "<?php echo $_SERVER['PHP_SELF']; ?>">
-            <h1> จงกรอกข้อมูลนิสิตที่ต้องการแก้ไข </h1>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">รหัสนิสิต : </label>
-                    <div class="col-sm-10">
-                    <input class="form-control" placeholder="รหัสนิสิต" type="text" name="sid" value ="<?php echo $row['Sid']?>"><p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"> ชื่อหอพัก : </label>
-                    <div class="col-sm-10">
-                    <input class="form-control" placeholder="ชื่อหอพัก" type="text" name="dormName" value ="<?php echo $row['DormName']?>"><p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">ห้อง : </label>
-                    <div class="col-sm-10">
-                    <input class="form-control" placeholder="ห้อง" type="text" name="room" value ="<?php echo $row['RoomNo']?>"><p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">เตียง : </label>
-                    <div class="col-sm-10">
-                    <input class="form-control" placeholder="เตียง" type="text" name="bed" value ="<?php echo $row['BedNo']?>"><p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">วันที่เข้าหอ : </label>
-                    <div class="col-sm-10">
-                    <input class="form-control" placeholder="วันที่เข้าหอ" type="date" name="accessdate" value ="<?php echo $row['AccessDate']?>"><p>
-                    </div>
-                </div>
-            <input type ="submit" style="width:100px" class="btn btn-success" name ="send" value="ตกลง">    
-            <input type ="reset" style="width:100px" class="btn btn-danger" name ="cancel" value="ยกเลิก">  
+            <span class="contact3-form-title">
+                                            <h1>จงกรอกข้อมูลนิสิต</h1>
+                                            <h1>ที่ต้องการแก้ไข</h1>
+					</span>
+            <div class="wrap-input3 validate-input" data-validate="Name is required">
+						<input class="input3" type="text" name="sid" placeholder="รหัสนิสิต :" value ="<?php echo $row['Sid']?>">
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 validate-input" data-validate = "Dormname is required">
+						<input class="input3" type="text" name="dormName" placeholder="ชื่อหอพัก :" value ="<?php echo $row['DormName']?>">
+						<span class="focus-input3"></span>
+					</div>
+
+					<div class="wrap-input3 validate-input" data-validate = "Room is required">
+						<input class="input3" type="text" name="room" placeholder="ห้อง :" value ="<?php echo $row['RoomNo']?>">
+						<span class="focus-input3"></span>
+					</div>
+
+                                        <div class="wrap-input3 validate-input" data-validate = "Bed is required">
+						<input class="input3" type="text" name="bed" placeholder="เตียง :" value ="<?php echo $row['BedNo']?>">
+						<span class="focus-input3"></span>
+					</div>
+                                    
+                                        <div class="wrap-input3 validate-input" data-validate = "AccessDate is required">
+						<input class="input3" type="date" name="accessdate" placeholder="วันที่เข้าหอ : " value ="<?php echo $row['AccessDate']?>">
+						<span class="focus-input3"></span>
+					</div>
+	
+                                        <div class="container-contact3-form-btn"><center>
+                                                <button class="contact3-form-btn" type ="submit" name ="send">
+							ตกลง
+						</button>
+                                                <button class="contact3-form-btn" type ="reset" name ="cancel">
+							ยกเลิก
+						</button>
+                                        </center></div>
         </form>
-              
+              </div>
+		</div>
+            <center><button class="contact3-form-btn" type ="submit" value="ย้อนกลับ" onclick = "location.href='manageDorm.php'">
+		กลับหน้าหลัก
+	</button></center>
+	</div>
         <?php
         }
         else{
@@ -72,19 +98,23 @@ and open the template in the editor.
             $bed = $_POST['bed'];
             $accessdate = $_POST["accessdate"];
             
-            $sql = "UPDATE student SET DormName='$dormName',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate' WHERE Sid='$sid'";
+            $sql = "UPDATE manage_dorm SET DormName='$dormName',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate' WHERE Sid='$sid'";
             $result = $conn->query($sql);
             if ($result) {
-                echo "แก้ไขข้อมูลเรียบร้อยแล้ว";
+                echo "<p><b><center>แก้ไขข้อมูลเรียบร้อยแล้ว</center></b></p>";
             } else {
-                echo "ไม่สามารถแก้ไขข้อมูลได้";
+                echo "<p><b><center>ไม่สามารถแก้ไขข้อมูลได้</center></b></p>";
             }
+            ?>
+<br>
+    <center><button class="btn btn-danger" type ="submit" value="ย้อนกลับ" onclick = "location.href='manageDorm.php'">
+		กลับหน้าหลัก
+            </button></center>
+                <?php
             $conn->close();
-        // put your code here
+        
         }
         ?>
-        <br>
-        <input type ="submit" style="width:200px" class="btn btn-primary" onclick = "location.href='manageDorm.php'" value="ย้อนกลับ"> 
-        </div>
+
     </body>
 </html>

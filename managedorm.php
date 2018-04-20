@@ -19,8 +19,8 @@ and open the template in the editor.
         <div class="container">
         <?php
             include 'config.inc';
-            $sql = "select distinct * from student,dormitory
-                    WHERE student.DormName=dormitory.DormName;";
+            $sql = "select distinct * from student,manage_dorm
+                    WHERE student.Sid=manage_dorm.Sid";
             $result = $conn->query($sql);
         ?>
             <div class="table-users">

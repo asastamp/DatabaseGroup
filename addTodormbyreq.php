@@ -12,18 +12,18 @@ and open the template in the editor.
     <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/animate/animate.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css2/util.css">
-	<link rel="stylesheet" type="text/css" href="css2/main.css">
+	<link rel="stylesheet" type="text/css" href="s_form/css/util.css">
+	<link rel="stylesheet" type="text/css" href="s_form/css/main.css">
     <!--===============================================================================================-->
     </head>
     <body>
@@ -76,8 +76,8 @@ and open the template in the editor.
 				</form>
 			</div>
 		</div>
-            <center><button class="contact3-form-btn" type ="submit" value="ย้อนกลับ">
-		กลับหน้าหลัก
+            <center><button class="contact3-form-btn" type ="submit" value="ย้อนกลับ" onclick = "location.href='inforequest.php'">
+		ย้อนกลับ
 	</button></center>
 	</div>
 
@@ -91,27 +91,23 @@ and open the template in the editor.
             $room = $_POST['room'];
             $bed = $_POST['bed'];
             $accessdate = $_POST["accessdate"];
-            $sql = "UPDATE student SET DormName='$dormname',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate',DScore=0 "
-                    . "WHERE Sid='$sid'";
-            
+            $sql = "INSERT INTO manage_dorm (`Sid`, `DormName`, `RoomNo`, `BedNo` , `AccessDate` , `DScore`)
+            VALUES ('$sid','$dormname', '$room' ,'$bed','$accessdate','0');";
             $result = $conn->query($sql);
             if ($result) {
-                echo "เพิ่มข้อมูลเรียบร้อยแล้ว";
+                echo "<p><b><center>เพิ่มข้อมูลเรียบร้อยแล้ว</center></b></p>";
                 echo "<br>";
-                echo "<a href='deleteToReq.php?id=$sid'> กลับหน้าหลัก</a>"
-               
-                ?>
-                <?php
-                
-                
+                echo "<center><a class='btn btn-danger' href='deleteToReq.php?id=$sid'> กลับหน้าหลัก</a></center>";
             } else {
-                echo "ไม่สามารถเพิ่มข้อมูลได้";
-                ?>
-            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='index.php'">
-                    กลับหน้าหลัก
-        </button></center>       
+                echo "<p><b><center>ไม่สามารถเพิ่มข้อมูลได้</center></b></p>";
+            ?>
+            <br>
+            <center><button class="btn btn-danger" type ="submit" value="ย้อนกลับ" onclick = "location.href='index.php'">
+		กลับหน้าหลัก
+            </button></center>     
                 <?php
             }
+
             $conn->close();
         // put your code here
         }
@@ -119,12 +115,12 @@ and open the template in the editor.
        
 	<div id="dropDownSelect1"></div>
         <!--===============================================================================================-->
-	<script src="vendor2/jquery/jquery-3.2.1.min.js"></script>
+	<script src="s_form/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor2/bootstrap/js/popper.js"></script>
-	<script src="vendor2/bootstrap/js/bootstrap.min.js"></script>
+	<script src="s_form/vendor/bootstrap/js/popper.js"></script>
+	<script src="s_form/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor2/select2/select2.min.js"></script>
+	<script src="s_form/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
@@ -132,7 +128,7 @@ and open the template in the editor.
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js2/main.js"></script>
+	<script src="s_form/js/main.js"></script>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>

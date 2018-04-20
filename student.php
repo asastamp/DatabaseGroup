@@ -27,7 +27,7 @@ and open the template in the editor.
 		exit();
             }	
             include 'config.inc';
-            $sql = "select * from student where Sid = '".$_SESSION['Username']."'";
+            $sql = "select * from manage_dorm,student where manage_dorm.Sid = student.Sid and student.Sid = '".$_SESSION['Username']."'";
             $result = $conn->query($sql);
         ?>
         <div class="table-users">

@@ -17,16 +17,21 @@ and open the template in the editor.
         <?php
             include 'config.inc';
             $removeSid = strval($_GET['id']);
-            $sql = "UPDATE student SET DormName=NULL,BedNo=NULL,RoomNo=NULL,AccessDate=NULL,Dscore=NULL where Sid=$removeSid";
+            $sql = "DELETE FROM manage_dorm
+            WHERE Sid=$removeSid;";
+            
             $result = $conn->query($sql);
             if ($result) {
-                echo "ลบข้อมูลเรียบร้อยแล้ว";
+                echo "<p><b><center>ลบข้อมูลเรียบร้อยแล้ว</center></b></p>";
             } else {
-                echo "ไม่สามารถลบข้อมูลได้";
+                echo "<p><b><center>ไม่สามารถลบข้อมูลได้</center></b></p>";
             }
             $conn->close();   
         ?>
-        <input type ="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='manageDorm.php'" value="ย้อนกลับ"> 
+               <br>
+            <center><button class="btn btn-danger" type ="submit" value="ย้อนกลับ" onclick = "location.href='manageDorm.php'">
+		ย้อนกลับ
+            </button></center>
         </div>
     </body>
 </html>

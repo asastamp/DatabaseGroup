@@ -20,13 +20,16 @@ and open the template in the editor.
             $sql = "delete from request where Sid=$removeSid";
             $result = $conn->query($sql);
             if ($result) {
-                echo "ลบrequestเรียบร้อยแล้ว";
+                echo "<p><b><center>ลบrequestเรียบร้อยแล้ว</center></b></p>";
             } else {
-                echo "ไม่สามารถลบrequestได้";
+                echo "<p><b><center>ไม่สามารถลบrequestได้</center></b></p>";
             }
             $conn->close();   
         ?>
-        <input type ="submit" class="btn btn-primary btn-lg btn-block" onclick = "location.href='index.php'" value="ย้อนกลับ"> 
+        <br>
+            <center><button class="btn btn-danger" type ="submit" value="ย้อนกลับ" onclick = "location.href='index.php'">
+		กลับหน้าหลัก
+            </button></center>
         </div>
     </body>
 </html>

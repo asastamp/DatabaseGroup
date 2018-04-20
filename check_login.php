@@ -11,16 +11,25 @@
 <?php
 	session_start();
 	include 'config.inc';
-
+        
+        //code for sql injection
+//        $username = $_POST['txtUsername'];
+//        $password = $_POST['txtPassword'];
+//        $sql = "SELECT * FROM member WHERE Username = '$username' and Password = '$password'";
+        
+        //code for protection sql injection
 	$sql = "SELECT * FROM member WHERE Username = '".mysqli_real_escape_string($conn,$_POST['txtUsername'])."' 
 	and Password = '".mysqli_real_escape_string($conn,$_POST['txtPassword'])."'";
 	$objQuery = mysqli_query($conn,$sql);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 	if(!$objResult)
 	{
-		echo 'Username หรือ Password ผิดหรือเปล่า';?>
+		echo '<p><b><center>Username หรือ Password ผิดหรือเปล่า</center></b></p>';
+                ?>
             <br>
-                  <input type="submit" class="btn btn-primary" value="กลับหน้า Login" onclick = "location.href='login.php'" />
+                  <center><button class="btn btn-danger" type ="submit" value="กลับหน้า Login" onclick = "location.href='login.php'">
+		กลับหน้า Login
+            </button></center>
 	<?php
                 }
 	else

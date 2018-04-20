@@ -12,18 +12,18 @@ and open the template in the editor.
     <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="s_form/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/animate/animate.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor2/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="s_form/vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css2/util.css">
-	<link rel="stylesheet" type="text/css" href="css2/main.css">
+	<link rel="stylesheet" type="text/css" href="s_form/css/util.css">
+	<link rel="stylesheet" type="text/css" href="s_form/css/main.css">
     <!--===============================================================================================-->
     </head>
     <body>
@@ -92,40 +92,33 @@ and open the template in the editor.
             $bed = $_POST['bed'];
             $accessdate = $_POST["accessdate"];
             
-            $sql = "UPDATE student SET DormName='$dormname',BedNo='$bed',RoomNo='$room',AccessDate='$accessdate',DScore=0 "
-                    . "WHERE Sid='$sid'";
+            $sql = "INSERT INTO manage_dorm (`Sid`, `DormName`, `RoomNo`, `BedNo` , `AccessDate` , `DScore`)
+            VALUES ('$sid','$dormname', '$room' ,'$bed','$accessdate','0');";
             
             $result = $conn->query($sql);
             if ($result) {
-                echo "เพิ่มข้อมูลเรียบร้อยแล้ว";
-                ?>
-            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='manageDorm.php'">
-                    กลับหน้าหลัก
-        </button></center>
-                <?php
-                
-                
+                echo "<p><b><center>เพิ่มข้อมูลเรียบร้อยแล้ว</center></b></p>";
             } else {
-                echo "ไม่สามารถเพิ่มข้อมูลได้";
-                ?>
-            <center><button class="contact3-form-btn" type ="submit"  onclick = "location.href='manageDorm.php'">
-                    กลับหน้าหลัก
-        </button></center>       
-                <?php
+                echo "<p><b><center>ไม่สามารถเพิ่มข้อมูลได้</center></b></p>";
             }
+               ?>
+<br>
+    <center><button class="btn btn-danger" type ="submit" value="ย้อนกลับ" onclick = "location.href='manageDorm.php'">
+		กลับหน้าหลัก
+            </button></center>
+                <?php
             $conn->close();
-        // put your code here
         }
 ?>
        
 	<div id="dropDownSelect1"></div>
         <!--===============================================================================================-->
-	<script src="vendor2/jquery/jquery-3.2.1.min.js"></script>
+	<script src="s_form/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor2/bootstrap/js/popper.js"></script>
-	<script src="vendor2/bootstrap/js/bootstrap.min.js"></script>
+	<script src="s_form/vendor/bootstrap/js/popper.js"></script>
+	<script src="s_form/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor2/select2/select2.min.js"></script>
+	<script src="s_form/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
